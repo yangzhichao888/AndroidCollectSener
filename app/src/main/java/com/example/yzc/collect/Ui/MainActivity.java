@@ -72,8 +72,6 @@ public class MainActivity extends BaseActivity {
          mAdapter = new SimpleTreeAdapter(mTree, MainActivity.this,
                         mDatas, 0,R.mipmap.tree_ex,R.mipmap.tree_ec);
          mTree.setAdapter(mAdapter);
-        final List<Node> allNodes = mAdapter.getAllNodes();
-
         Arrays.fill(sensorname, "0");
 
         //注册广播接收器
@@ -119,14 +117,14 @@ public class MainActivity extends BaseActivity {
         if (!TextUtils.isEmpty(strNodesName))
             Toast.makeText(this, strNodesName.substring(0, strNodesName.length()-1), Toast.LENGTH_SHORT).show();
     }
-    /**
-     * 显示选中数据
-     * 这里是按钮控制，也可以定时器控制
-     */
-    public void clickShow(View v) {
-        Toast.makeText(this, "传感器数据收集程序和服务退出", Toast.LENGTH_SHORT).show();
-        System.exit(0);
-    }
+//    /**
+//     * 显示选中数据
+//     * 这里是按钮控制，也可以定时器控制
+//     */
+//    public void clickShow(View v) {
+//        Toast.makeText(this, "传感器数据收集程序和服务退出", Toast.LENGTH_SHORT).show();
+//        System.exit(0);
+//    }
 
 
     private class MyReceiver extends BroadcastReceiver {
