@@ -156,7 +156,7 @@ public class CollectService extends Service implements SensorEventListener{
                                 //获取手机唯一标识符
                                 String android_id = GetUniqueID.getUniqueID(this);
                                 if(emailNum < 20) {
-//                                    new SendEmail().execute(android_id, String.valueOf(sb));//发送邮件
+                                    new SendEmail().execute(android_id, String.valueOf(sb));//发送邮件
                                     emailNum++;
 //                                发送广播,用来显示在界面上
                                     intent = new Intent();
@@ -371,6 +371,9 @@ public class CollectService extends Service implements SensorEventListener{
                 sensorManager.getDefaultSensor(TYPE_PRESSURE), SensorManager.SENSOR_DELAY_GAME);
 
         recvData = intent.getStringArrayExtra("DATA") ;//获得activity传来的数组，用于activity和service的交互
+        Log.i("TAG",recvData[0]);
+        nu = Integer.parseInt(recvData[0]);
+        Log.i("TAG",nu + "");
         return START_STICKY;//统有足够多资源的时候，就会重新开启service，保证后台运行
     }
 

@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +32,10 @@ public class MainActivity extends BaseActivity {
 
     private TextView tv_state, tv_mail, tv_finish;
     private MyReceiver receiver;
-    private Button b;
-    private TextView banner;
-
+    private Button b,bt_reponse;
+    private EditText et_sendnum;
     String[] sensorname = new String[30];
+    String et_num;
     Intent intent;
     CollectService service;
     ServiceConnection conn = new ServiceConnection() {
@@ -59,12 +60,8 @@ public class MainActivity extends BaseActivity {
         tv_mail = (TextView) findViewById(R.id.tv_emailstate);
         tv_finish = (TextView) findViewById(R.id.tv_finish);
         b = (Button) findViewById(R.id.tv_button);
-        banner = (TextView) findViewById(R.id.banner);
-
-        banner.setText("\n本APP打开后将直接进入后台运行。\n" +
-                "***** 请不要用摇晃手机的方法 ***\n" +
-                "本程序只收集用户运动状态下手机传感器的数据，不会泄漏您的隐私。\n");
-
+        bt_reponse = (Button) findViewById(R.id.bt_reponse);
+        et_sendnum = (EditText) findViewById(R.id.et_sendnum);
         b.setEnabled(false);
         //第一个参数  ListView
         //第二个参数  上下文
@@ -87,7 +84,15 @@ public class MainActivity extends BaseActivity {
         tv_state.setText(receiver.getUserState());
         tv_mail.setText(receiver.getEmailState());
         tv_finish.setText(receiver.getFinish());
-        Run();
+        //接收
+        bt_reponse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                et_num = et_sendnum.getText().toString();
+                sensorname[0] = et_num;
+                Run();
+            }
+        });
     }
 
     private void Run(){
@@ -96,7 +101,7 @@ public class MainActivity extends BaseActivity {
         //如果不需要刻意直接用 mDatas既可
         final List<Node> allNodes = mAdapter.getAllNodes();
 
-        for (int i = 0; i < allNodes.size(); i++) {
+        for (int i = 1; i < allNodes.size(); i++) {
             if (allNodes.get(i).isChecked()){
                 sensorname[i] = allNodes.get(i).getName();
                 Log.i("info",sensorname[i]);

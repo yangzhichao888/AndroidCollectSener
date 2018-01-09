@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryDark"
+        android:text="\n本APP打开后将直接进入后台运行。*** 请不要用摇晃手机的方法 *** 本程序只收集用户运动状态下手机传感器的数据，不会泄漏您的隐私。"
 
         android:singleLine="true"
         android:ellipsize="marquee"
@@ -19,6 +20,23 @@
         android:focusableInTouchMode="true"
         android:scrollHorizontally="true"
         />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+
+            android:inputType="number"
+            android:hint="请输入每封邮件的数据量"
+            android:id="@+id/et_sendnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="提交"
+            android:id="@+id/bt_reponse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lv_tree"
